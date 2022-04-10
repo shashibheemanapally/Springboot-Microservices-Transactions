@@ -1,7 +1,12 @@
 package com.shashi.Bank.model;
 
+import java.io.Serializable;
 
-public class Transaction {
+
+
+public class Transaction implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	String AccountNumber;
 	String Type;
 	Double Amount;
