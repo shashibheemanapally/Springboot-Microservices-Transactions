@@ -27,7 +27,9 @@ public class TransactionController {
 	@Autowired
 	private TransactionService transactionService;
 	@RequestMapping(method = RequestMethod.POST)
-	public void addTransaction(@RequestBody SealedObject encryptedTxn) throws InvalidKeyException, ClassNotFoundException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, IOException {
-		transactionService.addTransaction(encryptedTxn);
+	public void addTransaction(@RequestBody String encTxnString) throws Exception {
+		
+		transactionService.addTransaction(encTxnString);
+		
 	}
 }

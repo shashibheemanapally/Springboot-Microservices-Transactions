@@ -12,6 +12,7 @@ import javax.crypto.SealedObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
 import com.shashi.TransactionQ.entity.TransactionEntity;
 import com.shashi.TransactionQ.model.Transaction;
 import com.shashi.TransactionQ.repository.TransactionRepository;
@@ -28,9 +29,14 @@ public class TransactionService {
 	
 
 
-	public void addTransaction(SealedObject encryptedTxn) throws InvalidKeyException, ClassNotFoundException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, IOException {
+	public void addTransaction(String encTxnString) throws Exception {
 		
-		Transaction txn = (Transaction)ObjectEncryptionDecryption.decryptObject(encryptedTxn);
+		String txnString = edUtil.decryptString(encTxnString);
+		
+		Gson gson = new Gson(); 
+		Transaction txn = gson.fromJson(txnString, Transaction.class); 
+		
+		
 		
 		TransactionEntity te = new TransactionEntity();
 		te.setAccountFrom(txn.getAccountFrom());

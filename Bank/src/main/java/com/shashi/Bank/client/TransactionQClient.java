@@ -11,5 +11,5 @@ import com.shashi.Bank.model.Transaction;
 @FeignClient(name = "transaction-q", url = "http://localhost:8082")
 public interface TransactionQClient {
 	@RequestMapping(method = RequestMethod.POST, value = "/transactions", consumes = "application/json")
-    void create(SealedObject enctxn);
+    void create(String encString);
 }

@@ -25,7 +25,7 @@ public class TransactionController {
 	@Autowired
 	private TransactionService transactionService;
 	@RequestMapping(method = RequestMethod.POST)
-	public void addTransaction(@RequestBody Transaction txn) throws InvalidKeyException, IllegalBlockSizeException, NoSuchAlgorithmException, NoSuchPaddingException, IOException {
+	public void addTransaction(@RequestBody Transaction txn) throws Exception {
 		transactionService.addTransactionToQ(txn);
 	}
 }
